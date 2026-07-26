@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Holiday International | Purnia</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4af37; /* Premium Gold */
+            --primary-dark: #aa8c2c;
+            --secondary: #f8f9fa; /* Light color for headings */
+            --bg-color: #0a0a0a; /* Obsidian Deep */
+            --bg-surface: #121212; /* Surface color */
+            --text-main: #e0e0e0;
+            --text-light: #a0a0a0;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.7);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+        }
+
+        /* Glassmorphism Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-book {
+            background-color: var(--primary);
+            color: var(--bg-color);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-book:hover {
+            background-color: transparent;
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 40px;
+            position: relative;
+            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)), url('assets/hotel_real_upgraded_1784030226454.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            color: var(--white);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-num {
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            background: #181818;
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .glass-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .glass-card p, .glass-card ul {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .glass-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .glass-card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .glass-card ul li::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* Rooms Section */
+        #rooms {
+            background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-surface) 100%);
+        }
+
+        .feature-split {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+
+        .feature-split:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-split.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-img {
+            flex: 1;
+            height: 500px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .feature-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .feature-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            pointer-events: none;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .price-highlight {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Dining */
+        #dining {
+            background: var(--bg-surface);
+        }
+
+        /* Amenities Grid */
+        .amenities {
+            background-color: #050505;
+            color: var(--secondary);
+        }
+
+        .amenities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .amenity-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .amenity-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .amenity-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .amenity-item h4 {
+            color: var(--secondary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 80px 5% 30px;
+            color: var(--text-light);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .footer-col.brand h2 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col.brand h2 span {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 150px;
+            }
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+            .hero p {
+                margin: 0 auto 30px;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .feature-split, .feature-split.reverse {
+                flex-direction: column;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 5%;
+                gap: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .hero {
+                padding-top: 180px;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            section {
+                padding: 60px 5%;
+            }
+            .feature-split {
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+            .feature-img {
+                height: 350px;
+            }
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            .feature-text h3 {
+                font-size: 2rem;
+            }
+            .stat-num {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-img {
+                height: 250px;
+            }
+            .nav-links {
+                gap: 10px;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            .glass-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Hotel Holiday <span>International</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#dining">Dining</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">Premium 2-Star Hotel</div>
+            <h1>Experience <span>Comfort</span> in Purnia</h1>
+            <p>A perfect blend of modern amenities, warm hospitality, and central location. Ideal for business travelers and family vacations alike.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num">4.1</span>
+                    <span class="stat-label">Google Rating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">2.4k+</span>
+                    <span class="stat-label">Happy Guests</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <h2>Everything You Need</h2>
+            <p>Located in the heart of Navratan Hatta, we offer an elegant stay with quick access to the city's highlights.</p>
+        </div>
+        
+        <div class="info-grid">
+            <div class="glass-card">
+                <div class="card-icon">📍</div>
+                <h3>Prime Location</h3>
+                <p>R N Shaw Chowk, Taxi Stand Rd, Sarvoday Nagar, Purnia, Bihar 854301.</p>
+                <ul>
+                    <li>Navratan Hatta Neighborhood</li>
+                    <li>5 mins from Bus Stand</li>
+                    <li>Near Malls & Cinema</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card">
+                <div class="card-icon">🕒</div>
+                <h3>Timing & Pricing</h3>
+                <p>Seamless check-in and checkout designed around your convenience.</p>
+                <ul>
+                    <li>Check-in: 12:00 PM</li>
+                    <li>Check-out: 11:00 AM</li>
+                    <li>Price: ~₹2,800 - ₹3,300/night</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card">
+                <div class="card-icon">💡</div>
+                <h3>Ideal For</h3>
+                <p>We cater to a diverse range of guests ensuring a memorable experience.</p>
+                <ul>
+                    <li>Business & Corporate Stays</li>
+                    <li>Family Vacations</li>
+                    <li>Ring Ceremony Parties</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="rooms">
+        <div class="feature-split">
+            <div class="feature-img">
+                <img src="assets/hotel_room_1784029804299.png" alt="Premium Room">
+            </div>
+            <div class="feature-text">
+                <div class="badge">Accommodations</div>
+                <h3>Spacious & Immaculate</h3>
+                <span class="price-highlight">From ₹2,800 per night</span>
+                <p style="color: var(--text-light); margin-bottom: 20px; font-size: 1.1rem;">Guests frequently describe our rooms as cozy, immaculately clean, and well-furnished with modern amenities to make you feel right at home.</p>
+                <ul style="list-style: none; margin-bottom: 30px;">
+                    <li style="margin-bottom: 10px;">✨ <strong>Complimentary Kits:</strong> Tea/Coffee, Dental, and Shaving kits.</li>
+                    <li style="margin-bottom: 10px;">✨ <strong>Comfort:</strong> Premium bath essentials and climate control.</li>
+                    <li style="margin-bottom: 10px;">✨ <strong>Aesthetic:</strong> Pleasant ambiance with beautiful interior design.</li>
+                </ul>
+                <a href="#contact" class="btn-book">View Suites</a>
+            </div>
+        </div>
+
+        <div class="feature-split reverse">
+            <div class="feature-img">
+                <img src="assets/family.png" alt="Family Room">
+            </div>
+            <div class="feature-text">
+                <div class="badge">Family Stays</div>
+                <h3>Child-Friendly Environment</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px; font-size: 1.1rem;">Traveling with family? We provide child-friendly facilities and a smoke-free environment. Select rooms even come equipped with kitchens for extended stays.</p>
+                <p style="color: var(--text-light); font-size: 1.1rem;">Enjoy the beautiful sketches and statues that add to the aesthetic appeal of our property.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="dining">
+        <div class="section-header">
+            <h2>Culinary Excellence</h2>
+            <p>Discover our highly praised in-house dining options.</p>
+        </div>
+        <div class="feature-split">
+            <div class="feature-text" style="padding-right: 40px;">
+                <h3>In-house Restaurant & Cafe</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px; font-size: 1.1rem;">Our restaurant is a significant highlight. We are famous for our non-vegetarian specialties, particularly the <strong>Chicken/Mutton Dehati</strong>.</p>
+                <p style="color: var(--text-light); margin-bottom: 20px; font-size: 1.1rem;">Don't miss our cafe—a "hidden gem" offering rich, smooth, and perfectly brewed coffee.</p>
+                <div style="padding: 15px; background: rgba(212,175,55,0.05); border-left: 4px solid var(--primary); border-radius: 4px;">
+                    <p style="font-size: 0.9rem; color: var(--secondary);"><em>Note: We maintain a strict policy against outside food delivery (e.g., KFC) being brought into the rooms to ensure hygiene and quality.</em></p>
+                </div>
+            </div>
+            <div class="feature-img">
+                <img src="assets/hotel_coffee_1784029817971.png" alt="Artisan Coffee">
+            </div>
+        </div>
+    </section>
+
+    <section id="amenities" class="amenities">
+        <div class="section-header">
+            <h2>Premium Facilities</h2>
+            <p>Everything you need for a comfortable stay.</p>
+        </div>
+        <div class="amenities-container">
+            <div class="amenity-item">
+                <div class="amenity-icon">🛜</div>
+                <h4>Free Wi-Fi</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🚗</div>
+                <h4>Huge Parking Area</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">❄️</div>
+                <h4>AC Rooms</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🍽️</div>
+                <h4>Room Service</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">♿</div>
+                <h4>Accessible</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🧺</div>
+                <h4>Laundry Service</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🚭</div>
+                <h4>Smoke-Free</h4>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">☕</div>
+                <h4>Paid Breakfast</h4>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col brand">
+                <h2>Hotel Holiday <span>International</span></h2>
+                <p>The premier 2-star destination in Purnia. Combining comfort, accessibility, and exceptional dining.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p>📞 095705 31111</p>
+                <p>🌐 hotelholidayinternational.in</p>
+                <p>📍 R N Shaw Chowk, Taxi Stand Rd, Sarvoday Nagar, Purnia, Bihar 854301</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 10px;"><a href="#about" style="color: inherit; text-decoration: none;">Location</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#rooms" style="color: inherit; text-decoration: none;">Rooms & Suites</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#dining" style="color: inherit; text-decoration: none;">Dining</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#amenities" style="color: inherit; text-decoration: none;">Facilities</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hotel Holiday International. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
